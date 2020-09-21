@@ -1,20 +1,17 @@
 from distutils.core import setup
 
-with open('requirements.txt') as f:
-    requirements = f.read().splitlines()
-
 setup(
     name='sp_yt_search',
     packages=['sp_yt_search'],
-    version='0.0.3',
+    version='0.1.0',
     license='MIT',
     description='',
     author='Marcin Myśliwiec',
     author_email='marcin.mysliw@gmail.com',
     url='https://github.com/MarcinMysliwiec/sp_yt_searcher',
-    download_url='https://github.com/MarcinMysliwiec/sp_yt_searcher/blob/master/dist/sp_yt_search-0.0.3.tar.gz',
+    download_url='https://github.com/MarcinMysliwiec/sp_yt_searcher/blob/master/dist/sp_yt_search-0.1.0.tar.gz',
     keywords=['first', 'sp_yt_search'],
-    install_requires=requirements,
+    install_requires=['requests==2.24.0'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your
