@@ -9,7 +9,7 @@ setup(
     author='Marcin Myśliwiec',
     author_email='marcin.mysliw@gmail.com',
     url='https://github.com/MarcinMysliwiec/sp_yt_searcher',
-    download_url='https://github.com/MarcinMysliwiec/sp_yt_searcher/tree/master/dist/sp_yt_searcher-0.0.2.tar.gz',
+    download_url='https://github.com/MarcinMysliwiec/sp_yt_searcher/blob/master/dist/sp_yt_search-0.0.2.tar.gz',
     keywords=['first', 'sp_yt_search'],
     install_requires=['requests==2.24.0'],
     classifiers=[
