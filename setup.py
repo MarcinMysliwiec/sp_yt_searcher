@@ -12,7 +12,7 @@ setup(
     author='Marcin Myśliwiec',
     author_email='marcin.mysliw@gmail.com',
     url='https://github.com/MarcinMysliwiec/yt_searcher',
-    download_url='https://github.com/user/reponame/archive/v_01.tar.gz',
+    download_url='https://github.com/MarcinMysliwiec/yt-searcher/tree/master/dist/yt_searcher-0.0.1.tar.gz',
     keywords=['first', 'yt_searcher'],
     install_requires=requirements,
     classifiers=[
