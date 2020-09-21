@@ -1,1 +1,1 @@
-from sp_yt_search.Search import Package
+from sp_yt_search.SP_YT import Package

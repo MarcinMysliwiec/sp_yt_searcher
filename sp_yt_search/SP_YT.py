@@ -11,9 +11,9 @@ class Search:
     def __init__(self, track, max_results=YT_MAX_RESULTS):
         self.TRACK = track
         self.MAX_RESULTS = max_results
-        self.VIDEOS = self.search()
+        self.VIDEOS = self.do_search()
 
-    def search(self):
+    def do_search(self):
         encoded_search = urllib.parse.quote(self.TRACK['c']['full_name'])
         url = f'{YT_BASE_URL}/results?search_query={encoded_search}'
         response = requests.get(url).text
