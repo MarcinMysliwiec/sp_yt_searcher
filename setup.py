@@ -4,16 +4,16 @@ with open('requirements.txt') as f:
     requirements = f.read().splitlines()
 
 setup(
-    name='yt_searcher',
-    packages=['yt_searcher'],
+    name='sp_yt_search',
+    packages=['sp_yt_search'],
     version='0.0.1',
     license='MIT',
     description='',
     author='Marcin Myśliwiec',
     author_email='marcin.mysliw@gmail.com',
-    url='https://github.com/MarcinMysliwiec/yt_searcher',
-    download_url='https://github.com/MarcinMysliwiec/yt-searcher/tree/master/dist/yt_searcher-0.0.1.tar.gz',
-    keywords=['first', 'yt_searcher'],
+    url='https://github.com/MarcinMysliwiec/sp_yt_searcher',
+    download_url='https://github.com/MarcinMysliwiec/sp_yt_searcher/tree/master/dist/sp_yt_searcher-0.0.1.tar.gz',
+    keywords=['first', 'sp_yt_search'],
     install_requires=requirements,
     classifiers=[
         'Development Status :: 3 - Alpha',
