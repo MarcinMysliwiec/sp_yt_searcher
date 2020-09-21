@@ -3,13 +3,13 @@ from distutils.core import setup
 setup(
     name='sp_yt_search',
     packages=['sp_yt_search'],
-    version='0.0.1',
+    version='0.0.2',
     license='MIT',
     description='',
     author='Marcin Myśliwiec',
     author_email='marcin.mysliw@gmail.com',
     url='https://github.com/MarcinMysliwiec/sp_yt_searcher',
-    download_url='https://github.com/MarcinMysliwiec/sp_yt_searcher/tree/master/dist/sp_yt_searcher-0.0.1.tar.gz',
+    download_url='https://github.com/MarcinMysliwiec/sp_yt_searcher/tree/master/dist/sp_yt_searcher-0.0.2.tar.gz',
     keywords=['first', 'sp_yt_search'],
     install_requires=['requests==2.24.0'],
     classifiers=[
