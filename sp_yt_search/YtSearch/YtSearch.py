@@ -3,25 +3,24 @@ import urllib.parse
 
 import requests
 
-from .object import YouTube
-from .settings import YT_MAX_RESULTS, YT_BASE_URL
+from .objects.Yt import YouTube
+from sp_yt_search.YtSearch.YtSettings import YtSettings
 
 
-class Search:
-    def __init__(self, track, max_results=YT_MAX_RESULTS):
+class YtSearch:
+    def __init__(self, track):
         self.TRACK = track
-        self.MAX_RESULTS = max_results
         self.VIDEOS = self.do_search()
 
     def do_search(self):
         encoded_search = urllib.parse.quote(self.TRACK['c']['full_name'])
-        url = f'{YT_BASE_URL}/results?search_query={encoded_search}'
+        url = f'{YtSettings().YT_BASE_URL}/results?search_query={encoded_search}'
         response = requests.get(url).text
         while 'window["ytInitialData"]' not in response:
             response = requests.get(url).text
         results = self.parse_html(response)
-        if self.MAX_RESULTS is not None and len(results) > self.MAX_RESULTS:
-            return results[: self.MAX_RESULTS]
+        if YtSettings().YT_MAX_RESULTS is not None and len(results) > YtSettings().YT_MAX_RESULTS:
+            return results[: YtSettings().YT_MAX_RESULTS]
         return results
 
     def parse_html(self, response):
@@ -47,7 +46,7 @@ class Search:
         results.sort(key=lambda res: res['search_ratio']['whole'], reverse=True)
         return results
 
-    def getBestMatch(self):
+    def get_best_match(self):
         return self.VIDEOS[0]
 
     def to_dict(self):
