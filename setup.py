@@ -2,14 +2,14 @@ from distutils.core import setup
 
 setup(
     name='sp_yt_search',
-    packages=['sp_yt_search', 'sp_yt_search.SpSearch', 'sp_yt_search.YtSearch'],
-    version='0.2.1',
+    packages=['sp_yt_search', 'sp_yt_search.SpSearch', 'sp_yt_search.SpSearch.objects', 'sp_yt_search.YtSearch', 'sp_yt_search.YtSearch.objects'],
+    version='0.3',
     license='MIT',
     description='',
     author='Marcin Myśliwiec',
     author_email='marcin.mysliw@gmail.com',
     url='https://github.com/MarcinMysliwiec/sp_yt_searcher',
-    download_url='https://github.com/MarcinMysliwiec/sp_yt_searcher/blob/master/dist/sp_yt_search-0.2.1.tar.gz',
+    download_url='https://github.com/MarcinMysliwiec/sp_yt_searcher/blob/master/dist/sp_yt_search-0.3.tar.gz',
     keywords=['sp_yt_search'],
     install_requires=['requests==2.24.0', 'spotipy==2.16.0'],
     classifiers=[
