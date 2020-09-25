@@ -1,28 +1,31 @@
-import json
+from .Sp import Sp
+from .SpSearchAlbum import SpSearchAlbum
+from .objects.GenericArtistObj import GenericArtistObj
 
-from .SpAuth import SpAuth
 
+class SpSearchArtist(Sp):
+    def __init__(self, artist_id):
+        self.artist_id = artist_id
+        super(SpSearchArtist, self).__init__()
 
-class SpSearchArtist(SpAuth):
-    def search(self, id):
-        results = self.client.artist(id)
-        response = self.client.artist_albums(id)
-        results['albums'] = list()
+    def search(self):
+        artist = self.client.artist(self.artist_id)
+        artist_albums = self.client.artist_albums(self.artist_id)
+        artist['albums'] = list()
+        while True:
+            for item in artist_albums['items']:
+                artist['albums'].append(SpSearchAlbum(item['id']))
 
-        with open('manual/data.json', 'w') as outfile:
-            json.dump(response, outfile, indent=4, sort_keys=True)
+            if artist_albums['next'] is None:
+                break
+            artist_albums = self.client.next(artist_albums)
 
-        # while True:
-        #     for item in response['items']:
-        #         item['tracks'] = SpSearchAlbum().search(item['id'])
-        #
-        #     results['albums'].extend(response['items'])
-        #
-        #     if response['next'] is None:
-        #         break
-        #     response = self.client.next(response)
-        #
-        # if (len(results['albums']) != response['total']):
-        #     raise Exception('To Do')
-        #
-        # return results
+        self.obj = artist
+
+    def to_generic(self):
+        data = self.obj
+        for ite, album in enumerate(data['albums']):
+            data['albums'][ite] = album.generic_data
+
+        self.generic_data = GenericArtistObj(data).__dict__
+        return self.generic_data

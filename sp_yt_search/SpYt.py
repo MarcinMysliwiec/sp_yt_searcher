@@ -1,20 +1,28 @@
-from .SpSearch.SpSearch import SpSearch
 from .SpSearch.SpSettings import SpSettings
-from .YtSearch.YtSearch import YtSearch
+from .SpSearch.SpStrategy import SpStrategy
 
 
 class SpYt:
-    def __init__(self, sp_client_id, sp_client_secret):
-        self.data = None
+    def __init__(self):
+        self.uri = ''
+        self.sp_instance = None
+
+    def set_credentials(self, sp_client_id, sp_client_secret):
         SpSettings().SPOTIPY_CLIENT_ID = sp_client_id
         SpSettings().SPOTIPY_CLIENT_SECRET = sp_client_secret
-        pass
 
-    def search(self, uri):
-        data = SpSearch(uri)
+    def sp_search(self, uri):
+        self.uri = uri
+        self.sp_instance = SpStrategy(uri)
 
-        for track in data.tracks():
-            track['c']['yt'] = YtSearch(track).to_dict()
+    def HasSpInstance(func):
+        def inner(self):
+            if self.sp_instance is None:
+                raise Exception('To Do')
+            func(self)
 
-        self.data = data
-        return self.data
+        return inner
+
+    @HasSpInstance
+    def get_sp_data(self):
+        return self.sp_instance.generic_data

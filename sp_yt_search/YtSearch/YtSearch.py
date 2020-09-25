@@ -13,7 +13,7 @@ class YtSearch:
         self.VIDEOS = self.do_search()
 
     def do_search(self):
-        encoded_search = urllib.parse.quote(self.TRACK['c']['full_name'])
+        encoded_search = urllib.parse.quote(self.TRACK['custom']['full_name'])
         url = f'{YtSettings().YT_BASE_URL}/results?search_query={encoded_search}'
         response = requests.get(url).text
         while 'window["ytInitialData"]' not in response:

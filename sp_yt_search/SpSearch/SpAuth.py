@@ -7,8 +7,7 @@ from ..Singleton import Singleton
 
 class SpAuth(metaclass=Singleton):
     def __init__(self):
-        self.client = None
-        self.auth()
+        self.client = self.auth()
 
     def check_credentials(self):
         return (
@@ -18,13 +17,8 @@ class SpAuth(metaclass=Singleton):
         )
 
     def auth(self):
-        if self.client is not None:
-            print('User has already been authenticated successfully.')
-            return
-
         if self.check_credentials():
-            print('You need to set your Spotify credentials.')
-            return
+            raise Exception('You need to set your Spotify credentials.')
 
         auth = oauth2.SpotifyClientCredentials(
             client_id=SpSettings().SPOTIPY_CLIENT_ID,
@@ -32,5 +26,4 @@ class SpAuth(metaclass=Singleton):
         )
 
         token = auth.get_access_token()
-        self.client = spotipy.Spotify(auth=token)
-        return self.client
+        return spotipy.Spotify(auth=token)

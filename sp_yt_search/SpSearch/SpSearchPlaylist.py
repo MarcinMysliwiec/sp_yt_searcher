@@ -1,24 +1,33 @@
-from .SpAuth import SpAuth
-from .objects.SpPlaylist import SpotifyPlaylist
-from .objects.SpTrack import SpotifyTrack
+from .Sp import Sp
+from .objects.GenericPlaylistObj import GenericPlaylistObj
+from .objects.GenericTrackObj import GenericTrackObj
 
 
-class SpSearchPlaylist(SpAuth):
-    def search(self, id):
-        results = self.client.playlist(id)
-        response = self.client.playlist_tracks(id)
-        results['tracks']['items'] = list()
+class SpSearchPlaylist(Sp):
+    def __init__(self, playlist_id):
+        self.playlist_id = playlist_id
+        super(SpSearchPlaylist, self).__init__()
+
+    def search(self):
+        playlist = self.client.playlist(self.playlist_id)
+        playlist['total_tracks'] = playlist['tracks']['total']
+        playlist['tracks'] = list()
+        response = self.client.playlist_tracks(self.playlist_id)
 
         while True:
-            for ite, item in enumerate(response['items']):
-                response['items'][ite] = SpotifyTrack(item['track']).to_dict()
-
-            results['tracks']['items'].extend(response['items'])
+            playlist['tracks'].extend(response['items'])
             if response['next'] is None:
                 break
             response = self.client.next(response)
 
-        if len(results['tracks']['items']) != results['tracks']['total']:
+        if len(playlist['tracks']) != playlist['total_tracks']:
             raise Exception('To Do')
 
-        return SpotifyPlaylist(results)
+        self.obj = playlist
+
+    def to_generic(self):
+        data = self.obj
+        for ite, track in enumerate(data['tracks']):
+            data['tracks'][ite] = GenericTrackObj(track['track']).__dict__
+
+        self.generic_data = GenericPlaylistObj(data).__dict__
