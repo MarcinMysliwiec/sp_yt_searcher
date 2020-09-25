@@ -1,4 +1,5 @@
 from .Sp import Sp
+from .objects.GenericArtistObj import GenericArtistObj
 from .objects.GenericAlbumObj import GenericAlbumObj
 from .objects.GenericTrackObj import GenericTrackObj
 
@@ -29,4 +30,12 @@ class SpSearchAlbum(Sp):
         for ite, track in enumerate(data['tracks']):
             data['tracks'][ite] = GenericTrackObj(track).__dict__
 
-        self.generic_data = GenericAlbumObj(data).__dict__
+        return GenericAlbumObj(data).__dict__
+
+    def to_artist(self):
+        return GenericArtistObj({
+            'id': self.obj['artists'][0]['id'],
+            'uri': self.obj['artists'][0]['uri'],
+            'name': self.obj['artists'][0]['name'],
+            'albums': self.to_generic(),
+        }).__dict__

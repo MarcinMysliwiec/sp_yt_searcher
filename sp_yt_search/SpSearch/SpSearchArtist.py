@@ -23,9 +23,11 @@ class SpSearchArtist(Sp):
         self.obj = artist
 
     def to_generic(self):
-        data = self.obj
-        for ite, album in enumerate(data['albums']):
-            data['albums'][ite] = album.generic_data
+        generic = self.obj
+        for ite, album in enumerate(generic['albums']):
+            generic['albums'][ite] = album.to_generic()
 
-        self.generic_data = GenericArtistObj(data).__dict__
-        return self.generic_data
+        return GenericArtistObj(generic).__dict__
+
+    def to_artist(self):
+        return self.to_generic()

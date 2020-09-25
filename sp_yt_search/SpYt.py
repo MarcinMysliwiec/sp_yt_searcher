@@ -24,5 +24,11 @@ class SpYt:
         return inner
 
     @HasSpInstance
+    def get_sp_generic(self):
+        print(self.sp_instance.to_generic())
+        return self.sp_instance.to_generic()
+
+    @HasSpInstance
     def get_sp_data(self):
-        return self.sp_instance.generic_data
+        print(self.sp_instance.to_album())
+        return self.sp_instance.to_album()

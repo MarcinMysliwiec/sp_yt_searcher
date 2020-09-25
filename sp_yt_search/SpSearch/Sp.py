@@ -6,10 +6,8 @@ class Sp(SpAuth):
     def __init__(self):
         super(Sp, self).__init__()
         self.obj = dict()
-        self.generic_data = dict()
 
         self.search()
-        self.to_generic()
 
     @abstractmethod
     def search(self):
@@ -17,4 +15,8 @@ class Sp(SpAuth):
 
     @abstractmethod
     def to_generic(self):
+        pass
+
+    @abstractmethod
+    def to_artist(self):
         pass
