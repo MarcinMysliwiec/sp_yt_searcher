@@ -13,13 +13,17 @@ def SpStrategy(uri):
     strategy_name = list(uri.split(":"))[1]
     resource_id = list(uri.split(":"))[2]
 
+    strategy = None
     if strategy_name == TRACK_STRATEGY_NAME:
-        return SpSearchTrack(resource_id)
+        strategy = SpSearchTrack(resource_id)
     if strategy_name == PLAYLIST_STRATEGY_NAME:
-        return SpSearchPlaylist(resource_id)
+        strategy = SpSearchPlaylist(resource_id)
     if strategy_name == ALBUM_STRATEGY_NAME:
-        return SpSearchAlbum(resource_id)
+        strategy = SpSearchAlbum(resource_id)
     if strategy_name == ARTIST_STRATEGY_NAME:
-        return SpSearchArtist(resource_id)
+        strategy = SpSearchArtist(resource_id)
 
-    raise Exception('To Do')
+    if strategy is None:
+        raise Exception('To Do')
+
+    return strategy

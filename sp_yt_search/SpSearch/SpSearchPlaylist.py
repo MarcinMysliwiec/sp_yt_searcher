@@ -1,7 +1,5 @@
 from .Sp import Sp
-from .objects.GenericArtistObj import GenericArtistObj
-from .objects.GenericPlaylistObj import GenericPlaylistObj
-from .objects.GenericTrackObj import GenericTrackObj
+from .objects.GenericObj import GenericObj, GenericTrackObj
 
 
 class SpSearchPlaylist(Sp):
@@ -24,19 +22,11 @@ class SpSearchPlaylist(Sp):
         if len(playlist['tracks']) != playlist['total_tracks']:
             raise Exception('To Do')
 
-        self.obj = playlist
+        return playlist
 
     def to_generic(self):
-        data = self.obj
-        for ite, track in enumerate(data['tracks']):
-            data['tracks'][ite] = GenericTrackObj(track['track']).__dict__
+        generic = self.data
+        for ite, track in enumerate(generic['tracks']):
+            generic['tracks'][ite] = GenericTrackObj(track['track']).__dict__
 
-        return GenericPlaylistObj(data).__dict__
-
-    def to_artist(self):
-        self.album = GenericArtistObj({
-            'id': '',
-            'uri': '',
-            'name': '',
-            'albums': self.to_generic(),
-        }).__dict__
+        return GenericObj(generic).__dict__

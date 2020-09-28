@@ -1,6 +1,6 @@
 from .Sp import Sp
 from .SpSearchAlbum import SpSearchAlbum
-from .objects.GenericArtistObj import GenericArtistObj
+from .objects.GenericObj import GenericObj
 
 
 class SpSearchArtist(Sp):
@@ -12,6 +12,7 @@ class SpSearchArtist(Sp):
         artist = self.client.artist(self.artist_id)
         artist_albums = self.client.artist_albums(self.artist_id)
         artist['albums'] = list()
+
         while True:
             for item in artist_albums['items']:
                 artist['albums'].append(SpSearchAlbum(item['id']))
@@ -20,14 +21,13 @@ class SpSearchArtist(Sp):
                 break
             artist_albums = self.client.next(artist_albums)
 
-        self.obj = artist
+        return artist
 
     def to_generic(self):
-        generic = self.obj
-        for ite, album in enumerate(generic['albums']):
-            generic['albums'][ite] = album.to_generic()
+        generic = self.data
+        generic['tracks'] = []
 
-        return GenericArtistObj(generic).__dict__
+        for album in generic['albums']:
+            generic['tracks'].extend(album.to_generic()['tracks'])
 
-    def to_artist(self):
-        return self.to_generic()
+        return GenericObj(generic).__dict__

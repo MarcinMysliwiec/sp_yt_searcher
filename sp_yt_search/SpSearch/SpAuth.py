@@ -2,10 +2,9 @@ import spotipy
 import spotipy.oauth2 as oauth2
 
 from sp_yt_search.SpSearch.SpSettings import SpSettings
-from ..Singleton import Singleton
 
 
-class SpAuth(metaclass=Singleton):
+class SpAuth:
     def __init__(self):
         self.client = self.auth()
 
