@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='sp_yt_search',
     packages=['sp_yt_search', 'sp_yt_search.SpSearch', 'sp_yt_search.SpSearch.objects', 'sp_yt_search.YtSearch', 'sp_yt_search.YtSearch.objects'],
-    version='1.0.0',
+    version='1.0.1 (stable)',
     license='MIT',
     description='',
     author='Marcin Myśliwiec',
