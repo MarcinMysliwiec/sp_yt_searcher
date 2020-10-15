@@ -1,7 +1,7 @@
 import spotipy
 import spotipy.oauth2 as oauth2
 
-from sp_yt_search.SpSearch.SpSettings import SpSettings
+from .SpSettings import SpSettings
 
 
 class SpAuth:

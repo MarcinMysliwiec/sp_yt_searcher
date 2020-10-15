@@ -1,5 +1,5 @@
 from .Sp import Sp
-from .objects.GenericObj import GenericObj, GenericTrackObj
+from .SpObjects import GenericObj, GenericTrackObj
 
 
 class SpSearchTrack(Sp):
@@ -10,7 +10,7 @@ class SpSearchTrack(Sp):
     def search(self):
         return self.client.track(self.track_id)
 
-    def to_generic(self):
+    def parse(self):
         return GenericObj({
             'type': self.data['type'],
             'id': self.data['id'],

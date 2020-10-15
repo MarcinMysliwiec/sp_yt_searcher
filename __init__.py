@@ -1,1 +1,1 @@
-from sp_yt_search.SpYt import Package
+from sp_yt_search import Package

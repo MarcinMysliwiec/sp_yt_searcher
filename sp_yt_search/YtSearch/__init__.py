@@ -3,8 +3,8 @@ import urllib.parse
 
 import requests
 
-from .objects.Yt import YouTube
-from sp_yt_search.YtSearch.YtSettings import YtSettings
+from .YtObjects import YouTube
+from .YtSettings import YtSettings
 
 
 class YtSearch:
@@ -13,7 +13,7 @@ class YtSearch:
         self.VIDEOS = self.do_search()
 
     def do_search(self):
-        encoded_search = urllib.parse.quote(self.TRACK['custom']['full_name'])
+        encoded_search = urllib.parse.quote(self.TRACK['full_name'])
         url = f'{YtSettings().YT_BASE_URL}/results?search_query={encoded_search}'
         response = requests.get(url).text
         while 'window["ytInitialData"]' not in response:
@@ -43,7 +43,7 @@ class YtSearch:
                 video_data = video.get('videoRenderer', {})
                 results.append(YouTube(self.TRACK, video_data).to_dict())
 
-        results.sort(key=lambda res: res['search_ratio']['whole'], reverse=True)
+        results.sort(key=lambda res: res['search_ratio'], reverse=True)
         return results
 
     def get_best_match(self):

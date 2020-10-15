@@ -1,6 +1,8 @@
+import copy
+
 from .Sp import Sp
 from .SpSearchAlbum import SpSearchAlbum
-from .objects.GenericObj import GenericObj
+from .SpObjects import GenericObj
 
 
 class SpSearchArtist(Sp):
@@ -23,11 +25,11 @@ class SpSearchArtist(Sp):
 
         return artist
 
-    def to_generic(self):
-        generic = self.data
+    def parse(self):
+        generic = copy.deepcopy(self.data)
         generic['tracks'] = []
 
         for album in generic['albums']:
-            generic['tracks'].extend(album.to_generic()['tracks'])
+            generic['tracks'].extend(album.parse()['tracks'])
 
         return GenericObj(generic).__dict__

@@ -1,5 +1,7 @@
+import copy
+
 from .Sp import Sp
-from .objects.GenericObj import GenericObj, GenericTrackObj
+from .SpObjects import GenericObj, GenericTrackObj
 
 
 class SpSearchPlaylist(Sp):
@@ -24,8 +26,9 @@ class SpSearchPlaylist(Sp):
 
         return playlist
 
-    def to_generic(self):
-        generic = self.data
+    def parse(self):
+        generic = copy.deepcopy(self.data)
+
         for ite, track in enumerate(generic['tracks']):
             generic['tracks'][ite] = GenericTrackObj(track['track']).__dict__
 

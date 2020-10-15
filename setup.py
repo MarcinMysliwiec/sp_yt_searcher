@@ -1,23 +1,26 @@
-from distutils.core import setup
+from setuptools import setup
 
 setup(
     name='sp_yt_search',
-    packages=['sp_yt_search', 'sp_yt_search.SpSearch', 'sp_yt_search.SpSearch.objects', 'sp_yt_search.YtSearch', 'sp_yt_search.YtSearch.objects'],
-    version='1.0.1(stable)',
+    packages={
+        'sp_yt_search',
+        'sp_yt_search.SpSearch',
+        'sp_yt_search.YtSearch',
+    },
+    version='1.0.2',
     license='MIT',
-    description='',
+    description='Parse Spotify URI to youtube link',
+    long_description=open('README.rst').read(),
+    long_description_content_type='text/x-rst',
     author='Marcin Myśliwiec',
     author_email='marcin.mysliw@gmail.com',
     url='https://github.com/MarcinMysliwiec/sp_yt_searcher',
-    download_url='https://github.com/MarcinMysliwiec/sp_yt_searcher/blob/master/dist/sp_yt_search-1.0.1(stable).tar.gz',
-    keywords=['sp_yt_search'],
+    download_url='https://github.com/MarcinMysliwiec/sp_yt_searcher/blob/master/dist/sp_yt_search-1.0.2.tar.gz',
+    keywords=['sp_yt_search', 'yt', 'sp'],
     install_requires=['requests==2.24.0', 'spotipy==2.16.0'],
     classifiers=[
-        'Development Status :: 3 - Alpha',
-        # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your
-        # mysliwim_first_pypi
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
-        # Define that your audience are developers
         'Topic :: Software Development :: Build Tools',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',

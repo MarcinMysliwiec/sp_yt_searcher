@@ -1,5 +1,7 @@
+import copy
+
 from .Sp import Sp
-from .objects.GenericObj import GenericObj, GenericTrackObj
+from .SpObjects import GenericObj, GenericTrackObj
 
 
 class SpSearchAlbum(Sp):
@@ -23,8 +25,8 @@ class SpSearchAlbum(Sp):
 
         return album
 
-    def to_generic(self):
-        generic = self.data
+    def parse(self):
+        generic = copy.deepcopy(self.data)
 
         for ite, track in enumerate(generic['tracks']):
             track['album'] = {}

@@ -7,11 +7,12 @@ class Sp(SpAuth):
     def __init__(self):
         super(Sp, self).__init__()
         self.data = self.search()
+        self.parsed = self.parse()
 
     @abstractmethod
     def search(self):
         pass
 
     @abstractmethod
-    def to_generic(self):
+    def parse(self):
         pass

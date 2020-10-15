@@ -13,23 +13,13 @@ class GenericAlbumObj:
         self.name = album['name']
         self.release_date = album['release_date']
 
+
 class GenericArtistsObj:
     def __init__(self, artists):
         self.data = []
         for artist in artists:
             temp = {'id': artist['id'], 'uri': artist['uri'], 'name': artist['name']}
             self.data.append(temp)
-
-
-class GenericCustomObj:
-    def __init__(self, track):
-        self.duration = int(track['duration_ms'] / 1000)
-        self.full_name = ', '.join(
-            [str(elem['name']) for elem in track['artists']]) + f" - {track['name']}"
-        self.is_remix = 'remix' in track['name'].lower()
-        self.is_instrumental = 'instrumental' in track['name'].lower()
-        self.is_live = 'live' in track['name'].lower()
-        self.is_official = not self.is_remix and not self.is_instrumental
 
 
 class GenericTrackObj:
@@ -41,4 +31,11 @@ class GenericTrackObj:
         self.duration_ms = track['duration_ms']
         self.artists = GenericArtistsObj(track['artists']).data
         self.album = GenericAlbumObj(track['album']).__dict__
-        self.custom = GenericCustomObj(track).__dict__
+        self.full_name = ', '.join(
+            [str(elem['name']) for elem in track['artists']]) + f" - {track['name']}"
+        self.duration = int(track['duration_ms'] / 1000)
+
+        self.is_remix = 'remix' in track['name'].lower()
+        self.is_instrumental = 'instrumental' in track['name'].lower()
+        self.is_live = 'live' in track['name'].lower()
+        self.is_official = not self.is_remix and not self.is_instrumental

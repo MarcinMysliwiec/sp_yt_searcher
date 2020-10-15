@@ -9,7 +9,7 @@ ALBUM_STRATEGY_NAME = 'album'
 ARTIST_STRATEGY_NAME = 'artist'
 
 
-def SpStrategy(uri):
+def sp_strategy(uri):
     strategy_name = list(uri.split(":"))[1]
     resource_id = list(uri.split(":"))[2]
 
