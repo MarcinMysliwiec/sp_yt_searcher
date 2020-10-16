@@ -31,7 +31,6 @@ class YouTube:
         res['duration'] = self.parse_duration(video_data.get('lengthText', {}).get('simpleText', 0))
         res['views'] = self.parse_views(video_data.get('viewCountText', {}).get('simpleText', 0))
         res['search_ratio'] = self.count_search_ratio(res)
-        res['save_path'] = self.parse_path(self.SPOTIFY_TRACK['full_name'])
         return res
 
     def parse_url(self, url):

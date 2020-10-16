@@ -7,7 +7,7 @@ setup(
         'sp_yt_search.SpSearch',
         'sp_yt_search.YtSearch',
     },
-    version='1.1.0',
+    version='1.1.1',
     license='MIT',
     description='Parse Spotify URI to youtube link',
     long_description=open('README.rst').read(),
