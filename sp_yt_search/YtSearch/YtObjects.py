@@ -34,19 +34,6 @@ class YouTube:
         res['save_path'] = self.parse_path(self.SPOTIFY_TRACK['full_name'])
         return res
 
-    def parse_path(self, full_name):
-        prefix = YtSettings().FILE_DIR[:-1] if YtSettings().FILE_DIR.endswith('/') else YtSettings().FILE_DIR
-        ext = YtSettings().FILE_EXT[1:] if YtSettings().FILE_EXT.startswith('.') else YtSettings().FILE_EXT
-
-        # remove dump stamps
-        for dump_stamp in TITLE['DUMP_STAMPS']:
-            full_name.replace(dump_stamp, '')
-        # removes multiple spaces
-        full_name = ' '.join(full_name.split()).replace('/', '_')
-        # returns value without leading and trailing space and mp3 extension
-
-        return f'{prefix}/{full_name.strip()}.{ext}'
-
     def parse_url(self, url):
         return f'{YtSettings().YT_BASE_URL}{url}'
 

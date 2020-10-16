@@ -33,7 +33,7 @@ Example Usage
         sp.sp_search(uri)                       # Search for URI
         print(sp.get_data())                    # Prints found spotify objects
 
-        sp.yt_search(uri)                       # Perform YT search for found Spotify objects
+        sp.yt_search()                          # Perform YT search for found Spotify objects
         print(sp.get_data())                    # Prints spotify objects with YouTube related results
 
 Availible URIs
@@ -43,9 +43,9 @@ Package can be used for fetching:
 
 -  Track:
 
-::
+   ::
 
-    spotify:track:{ID}
+       spotify:track:{ID}
 
 -  Playlist:
 
