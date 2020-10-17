@@ -1,5 +1,3 @@
-import json
-
 from .SpSearch import sp_strategy
 from .SpSearch.SpSettings import SpSettings
 from .YtSearch import YtSearch
@@ -24,4 +22,4 @@ class SpYt:
             self.sp_instance.parsed['tracks'][ite]['yt'] = YtSearch(track).to_dict()
 
     def get_data(self):
-        return json.dumps(self.sp_instance.parsed)
+        return self.sp_instance.parsed

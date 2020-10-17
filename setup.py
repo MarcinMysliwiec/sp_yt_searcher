@@ -1,5 +1,7 @@
 from setuptools import setup
 
+version = '1.1.2'
+
 setup(
     name='sp_yt_search',
     packages={
@@ -7,7 +9,7 @@ setup(
         'sp_yt_search.SpSearch',
         'sp_yt_search.YtSearch',
     },
-    version='1.1.1',
+    version=version,
     license='MIT',
     description='Parse Spotify URI to youtube link',
     long_description=open('README.rst').read(),
@@ -15,7 +17,7 @@ setup(
     author='Marcin Myśliwiec',
     author_email='marcin.mysliw@gmail.com',
     url='https://github.com/MarcinMysliwiec/sp_yt_searcher',
-    download_url='https://github.com/MarcinMysliwiec/sp_yt_searcher/blob/master/dist/sp_yt_search-1.0.2.tar.gz',
+    download_url=f'https://github.com/MarcinMysliwiec/sp_yt_searcher/blob/master/dist/sp_yt_search-{version}.tar.gz',
     keywords=['sp_yt_search', 'yt', 'sp'],
     install_requires=['requests==2.24.0', 'spotipy==2.16.0'],
     classifiers=[
